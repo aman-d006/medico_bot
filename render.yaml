@@ -5,13 +5,23 @@ services:
     region: oregon
     plan: free
     buildCommand: |
-      # Explicitly set Python version using pyenv
+      # 1. CRITICAL: Explicitly set and verify Python version
+      echo "--- Setting Python to 3.11.9 ---"
       pyenv install -s 3.11.9
       pyenv global 3.11.9
-      # Ensure setuptools and pip are up-to-date in the new environment
-      pip install --upgrade pip setuptools wheel
-      # Now install your project dependencies
+      python --version
+
+      # 2. Ensure the correct pip and build tools are installed in THIS Python
+      echo "--- Upgrading build tools ---"
+      python -m pip install --upgrade pip setuptools wheel
+
+      # 3. Install your project dependencies
+      echo "--- Installing requirements ---"
       pip install -r server/requirements.txt
+
+      # 4. Optional: Verify key packages
+      echo "--- Verifying installations ---"
+      python -c "import setuptools; print('setuptools OK')"
     startCommand: cd server && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
