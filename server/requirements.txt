@@ -1,27 +1,35 @@
+# Core dependencies
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
-python-multipart
+python-multipart==0.0.22
+python-dotenv==1.0.0
 
-langchain
-langchain-community
-langchain-core
-langchain-groq
+# LangChain - PINNED TO VERSIONS THAT WORK WITH PYTHON 3.11
+langchain==0.1.0
+langchain-community==0.0.27
+langchain-core==0.1.33
+langchain-groq==0.1.0
+langchain-google-genai==0.0.11  # Downgraded for compatibility
 
-pinecone
+# Google Generative AI
+google-generativeai==0.3.0       # Compatible with Python 3.11
 
-# Google Generative / Gemini SDK
-langchain-google-genai==1.0.8
-google-generativeai==0.7.2
+# Vector Database
+pinecone-client==2.2.4
+pinecone-text==0.9.0
 
-PyPDF
+# PDF Processing
+PyPDF==4.3.1
+pypdf==3.17.0
 
-python-dotenv
+# Utilities
+pydantic==1.10.13  # Force Pydantic v1 (critical for Python 3.11)
+requests==2.31.0
+tqdm==4.66.1
 
-pydantic
-requests
-tqdm
+# Logging
+loguru==0.7.2
 
-loguru
-
-# uv pip install -r requirements.txt
-
+# Additional dependencies that might be needed
+numpy==1.24.3
+typing-extensions==4.8.0
