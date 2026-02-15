@@ -5,10 +5,12 @@ services:
     region: oregon
     plan: free
     buildCommand: |
-      # Force Python 3.11
+      # Explicitly set Python version using pyenv
       pyenv install -s 3.11.9
       pyenv global 3.11.9
-      pip install --upgrade pip
+      # Ensure setuptools and pip are up-to-date in the new environment
+      pip install --upgrade pip setuptools wheel
+      # Now install your project dependencies
       pip install -r server/requirements.txt
     startCommand: cd server && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
