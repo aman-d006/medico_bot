@@ -1,25 +1,2 @@
-fastapi
-uvicorn[standard]
-python-multipart
-
-langchain
-langchain-community
-langchain-core
-langchain-groq
-
-pinecone
-
-# Google Generative / Gemini SDK
 google-generativeai
-
-PyPDF
-
-python-dotenv
-
-pydantic
-requests
-tqdm
-
-loguru
-
-# uv pip install -r requirements.txt
+langchain-google-genai
