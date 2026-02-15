@@ -5,7 +5,7 @@ WORKDIR /app
 # Copy and install dependencies
 COPY server/requirements.txt .
 RUN pip install --upgrade pip setuptools wheel && \
-    pip install -r requirements.txt
+    pip install -r server/requirements.txt
 
 # Copy application code
 COPY server/ ./server/

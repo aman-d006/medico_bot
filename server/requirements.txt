@@ -1,35 +1,39 @@
-# Core dependencies
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.22
-python-dotenv==1.0.0
+# Web Framework
+fastapi
+uvicorn[standard]
+python-multipart 
+python-dotenv # for file uploads
 
-# LangChain - PINNED TO VERSIONS THAT WORK WITH PYTHON 3.11
-langchain==0.1.0
-langchain-community==0.0.27
-langchain-core==0.1.33
-langchain-groq==0.1.0
-langchain-google-genai==0.0.11  # Downgraded for compatibility
+# LangChain & Ecosystem
+langchain
+langchain-community
+langchain-core
+langchain-groq
+langchain-google-genai
+# Vectorstore
+# chromadb
+pinecone
+pinecone-client
+pinecone-text
+# Embeddings
+# sentence-transformers
+# langchain-google-generative-ai
+google-generativeai
 
-# Google Generative AI
-google-generativeai==0.3.0       # Compatible with Python 3.11
+# PDF Parsing
+PyPDF  # backend for PyPDFLoader via langchain_community
 
-# Vector Database
-pinecone-client==2.2.4
-pinecone-text==0.9.0
+# Environment Variables
+python-dotenv
 
-# PDF Processing
-PyPDF==4.3.1
+# Typing & Utilities
+pydantic
+requests
+tqdm
 
+# Logging (optional but recommended)
+loguru
 
-# Utilities
-pydantic==1.10.13  # Force Pydantic v1 (critical for Python 3.11)
-requests==2.31.0
-tqdm==4.66.1
-
-# Logging
-loguru==0.7.2
-
-# Additional dependencies that might be needed
-numpy==1.24.3
-typing-extensions==4.8.0
+typing-extensions
+numpy
+#  uv pip install -r requirements.txt
