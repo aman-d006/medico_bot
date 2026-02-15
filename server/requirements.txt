@@ -10,8 +10,8 @@ langchain-groq
 pinecone
 
 # Google Generative / Gemini SDK
-google-generativeai
-langchain_google_genai>=0.0.1
+langchain-google-genai==1.0.8
+google-generativeai==0.7.2
 
 PyPDF
 
