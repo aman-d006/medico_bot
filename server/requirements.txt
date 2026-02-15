@@ -24,3 +24,4 @@ tqdm
 loguru
 
 # uv pip install -r requirements.txt
+
