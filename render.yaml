@@ -5,24 +5,31 @@ services:
     region: oregon
     plan: free
     buildCommand: |
-      # 1. CRITICAL: Explicitly set and verify Python version
-      echo "--- Setting Python to 3.11.9 ---"
+      echo "=== STEP 1: Force Python 3.11.9 ==="
+      # Method A: Use pyenv (Render's standard tool)
       pyenv install -s 3.11.9
       pyenv global 3.11.9
+      
+      # Method B: Also set PYENV_VERSION environment variable as a fallback
+      export PYENV_VERSION=3.11.9
+      
+      # Verify the active Python version
+      echo "Active Python version:"
       python --version
-
-      # 2. Ensure the correct pip and build tools are installed in THIS Python
-      echo "--- Upgrading build tools ---"
-      python -m pip install --upgrade pip setuptools wheel
-
-      # 3. Install your project dependencies
-      echo "--- Installing requirements ---"
+      which python
+      
+      echo "=== STEP 2: Upgrade core build tools in the CORRECT Python ==="
+      # Use the full path to ensure we're using the right one
+      /opt/render/project/src/.pyenv/shims/python -m pip install --upgrade pip setuptools wheel
+      
+      echo "=== STEP 3: Install project dependencies ==="
       pip install -r server/requirements.txt
-
-      # 4. Optional: Verify key packages
-      echo "--- Verifying installations ---"
+      
+      echo "=== STEP 4: Final verification ==="
       python -c "import setuptools; print('setuptools OK')"
     startCommand: cd server && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
+      - key: PIP_DEFAULT_TIMEOUT
+        value: "100"
